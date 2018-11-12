@@ -21,8 +21,12 @@ class Ship():
 
 	def update(self):
 		if self.moveing_right:
-			self.rect.center+=self.ai_settings.ship_speed_factor
+			self.center+=float(self.ai_settings.ship_speed_factor)
 		elif self.moveing_left:
-			self.rect.center-=self.ai_settings.ship_speed_factor
-
+			self.center-=float(self.ai_settings.ship_speed_factor)
+		#设置边界检查
+		if self.center<0:
+			self.center=0
+		elif self.center>self.screen_rect.right:
+			self.center=self.screen_rect.right
 		self.rect.centerx=self.center
